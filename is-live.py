@@ -8,7 +8,7 @@ def isChannelLive(username):
 
 parser = argparse.ArgumentParser()
 parser.add_argument('channel_name', nargs='*', type=str, help='Check channel')
-parser.add_argument('-f', type=str, help='Path to a file of channel names seperated by a newline')
+parser.add_argument('-f', type=str, help='Path to a txt file of channel names seperated by a newline')
 args = parser.parse_args()
 
 if args.f != None:
@@ -18,11 +18,10 @@ if args.f != None:
 
     for str in names:
         name = str.strip()
-        is_live = isChannelLive(name)
-        live_text = "live" if is_live else "not live"
-        print(name + " " + live_text)
+        print(name + " is live" if isChannelLive(name) else name + " not live")
 
 
 if args.channel_name != None:
     for str in args.channel_name:
-        print(str + " live" if isChannelLive(str) else str + " not live")
+        name = str.strip()
+        print(name + " is live" if isChannelLive(name) else name + " not live")
